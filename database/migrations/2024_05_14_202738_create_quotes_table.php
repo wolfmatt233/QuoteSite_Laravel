@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('author');
             $table->string('image');
             $table->string('quote');
-            $table->integer('page');
-            $table->string('character');
+            $table->integer('page')->nullable();
+            $table->string('character')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });

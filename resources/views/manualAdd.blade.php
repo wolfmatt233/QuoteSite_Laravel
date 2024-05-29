@@ -20,7 +20,7 @@
                             </p>
                         </header>
                     
-                        <form method="post" action="{{ route('quote.addManual') }}" class="mt-6 space-y-6">
+                        <form method="post" action="{{ route('addManual') }}" class="mt-6 space-y-6">
                             @csrf
                     
                             <div>
@@ -34,13 +34,23 @@
                             </div>
 
                             <div>
+                                <x-input-label for="image" :value="__('Book Cover (url)')" />
+                                <x-text-input id="image" name="image" type="text" class="mt-1 block w-full" required autofocus autocomplete="image" />
+                            </div>
+
+                            <div>
                                 <x-input-label for="quote" :value="__('Quote')" />
                                 <x-textarea-input id="quote" name="quote" type="text" class="mt-1 block w-full" required autofocus autocomplete="quote" />
                             </div>
 
                             <div>
-                                <x-input-label for="page" :value="__('Page')" />
+                                <x-input-label for="page" :value="__('Page (optional)')" />
                                 <x-text-input id="page" name="page" type="number" class="mt-1 block w-full" required autofocus autocomplete="page" />
+                            </div>
+
+                            <div>
+                                <x-input-label for="character" :value="__('Character (optional)')" />
+                                <x-text-input id="character" name="character" type="number" class="mt-1 block w-full" required autofocus autocomplete="character" />
                             </div>
                     
                             <div class="flex items-center gap-4">

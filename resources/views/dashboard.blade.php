@@ -10,9 +10,9 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @foreach ($quotes as $quote)
-                        <div class="flex">
+                        <div class="flex mt-5">
                             <img src="https://covers.openlibrary.org/b/id/{{ $quote->image }}-L.jpg" alt="image"
-                                class="w-20 mr-4">
+                                class="h-40 mr-4">
                             <div>
                                 <div class="flex">
                                     <p>{{ $quote->title }}</p>
@@ -22,9 +22,19 @@
 
                                 <div class="p-3">
                                     <p class="font-cav text-xl">"{{ $quote->quote }}"</p>
-                                    <p class="p-3">- {{ $quote->character }}</p>
+                                    @if ($quote->character)
+                                        <p class="mt-2 ml-4">- {{ $quote->character }}</p>
+                                    @endif
                                 </div>
-                                <p>Page {{ $quote->page }}</p>
+
+                                @if ($quote->page)
+                                    <p>Page {{ $quote->page }}</p>
+                                @endif
+
+                                <form method="post" action="{{ route('delete', $quote->id) }}">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class="bg-indigo-700 p-2 rounded-lg text-sm mt-2">Delete</button>
+                                </form>
                             </div>
                         </div>
                     @endforeach

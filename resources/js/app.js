@@ -7,23 +7,21 @@ window.Alpine = Alpine;
 Alpine.start();
 
 window.addEventListener("load", (e) => {
-    let getData;
-    let doneTypingTimer = 100;
     let bookSearch = document.getElementById("book_search");
+    let bookQuery = document.getElementById("book_query");
 
-    if(bookSearch !== null) {
-        bookSearch.onkeyup = (e) => {
-            clearTimeout(getData);
-            getData = setTimeout(searchBooks, doneTypingTimer);
-        };
-    
-        bookSearch.onkeydown = (e) => {
-            clearTimeout(getData);
-        };
-    }
+    bookSearch.onclick = (e) => {
+        if (!bookQuery) {
+            document.getElementById(
+                "bookResults"
+            ).innerHTML = `<option value="" disabled selected>Select your option</option>`;
+        } else {
+            searchBooks();
+        }
+    };
 
     async function searchBooks() {
-        let query = "https://openlibrary.org/search.json?q=" + bookSearch.value;
+        let query = "https://openlibrary.org/search.json?q=" + bookQuery.value;
         document.getElementById(
             "bookResults"
         ).innerHTML = `<option value="" disabled selected>Select your option</option>`;
@@ -38,7 +36,6 @@ window.addEventListener("load", (e) => {
                     let title = book.title;
                     let key = book.key;
                     key = key.split("/");
-                    console.log(key)
 
                     if (title.length > 30) {
                         title = title.substring(0, 30);

@@ -15,11 +15,6 @@ class QuoteController extends Controller
         return view('dashboard', ['quotes' => Quote::where('user_id', $id)->get()]);
     }
 
-    public function getAdd()
-    {
-        return view('add');
-    }
-
     public function saveQuote(Request $request)
     {
         $bookLink = 'https://openlibrary.org/works/' . $request->book . '.json';
@@ -41,5 +36,12 @@ class QuoteController extends Controller
         $newQuote->user_id = Auth::id();
         $newQuote->save();
         return redirect('/add');
+    }
+
+    public function deleteQuote($id)
+    {
+        $quote = Quote::find($id);
+        $quote->delete();
+        return redirect('/dashboard');
     }
 }
