@@ -24,6 +24,7 @@ class QuoteFactory extends Factory
             "page" => "181",
             "character" => "Glokta",
             "user_id" => 1,
+            "type" => "api",
         ];
     }
 }

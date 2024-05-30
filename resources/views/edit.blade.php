@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Add a Quote') }}
+            {{ __('Edit Quote') }}
         </h2>
     </x-slot>
 
@@ -12,7 +12,7 @@
                     <section>
                         <header>
                             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                {{ __('Add Quote') }}
+                                {{ __('Edit Quote') }}
                             </h2>
 
                             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
@@ -33,7 +33,7 @@
                                         <x-secondary-button class="ml-2 mt-1 h-10" id="book_search">Search</x-secondary-button>
                                     </div>
                                 </div>
-                                <select id="bookResults" id="book" name="book" autocomplete="book" required
+                                <select id="bookResults" id="book" name="book" autocomplete="book"
                                     class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full">
                                     <option value="" disabled selected>Select your option</option>
                                 </select>

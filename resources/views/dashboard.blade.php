@@ -11,8 +11,11 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @foreach ($quotes as $quote)
                         <div class="flex mt-5">
-                            <img src="https://covers.openlibrary.org/b/id/{{ $quote->image }}-L.jpg" alt="image"
-                                class="h-40 mr-4">
+                            @if ($quote->image && $quote->type == "api")
+                                <img src="https://covers.openlibrary.org/b/id/{{ $quote->image }}-L.jpg" alt="image" class="h-40 mr-4">
+                            @elseif ($quote->image && $quote->type == "manual")
+                                <img src="{{ $quote->image }}" alt="image" class="h-40 mr-4">
+                            @endif
                             <div>
                                 <div class="flex">
                                     <p>{{ $quote->title }}</p>
@@ -33,7 +36,8 @@
 
                                 <form method="post" action="{{ route('delete', $quote->id) }}">
                                     @csrf @method('DELETE')
-                                    <button type="submit" class="bg-indigo-700 p-2 rounded-lg text-sm mt-2">Delete</button>
+                                    <button type="submit"
+                                        class="bg-indigo-700 p-2 rounded-lg text-sm mt-2">Delete</button>
                                 </form>
                             </div>
                         </div>

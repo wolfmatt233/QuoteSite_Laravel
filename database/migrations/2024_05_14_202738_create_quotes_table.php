@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('quote');
             $table->integer('page')->nullable();
             $table->string('character')->nullable();
             $table->foreignId('user_id')->constrained('users');
+            $table->string('type');
             $table->timestamps();
         });
     }

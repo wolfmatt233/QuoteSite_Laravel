@@ -16,11 +16,12 @@
                             </h2>
                     
                             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                {{ __("Enter a quote from a book. Want to search for a book instead? Try it with the search option.") }}
+                                {{ __("Enter a quote from a book. Want to search for a book instead?") }}
+                                <a href="{{ route('add') }}" class="underline">Try the search option.</a>
                             </p>
                         </header>
                     
-                        <form method="post" action="{{ route('addManual') }}" class="mt-6 space-y-6">
+                        <form method="post" action="{{ route('saveManual') }}" class="mt-6 space-y-6">
                             @csrf
                     
                             <div>
@@ -30,27 +31,27 @@
 
                             <div>
                                 <x-input-label for="author" :value="__('Author')" />
-                                <x-text-input placeholder="Book author" name="book" type="text" class="mt-1 block w-full" required autofocus autocomplete="book" />
-                            </div>
-
-                            <div>
-                                <x-input-label for="image" :value="__('Book Cover (url)')" />
-                                <x-text-input id="image" name="image" type="text" class="mt-1 block w-full" required autofocus autocomplete="image" />
+                                <x-text-input placeholder="Book author" name="author" type="text" class="mt-1 block w-full" required autofocus autocomplete="author" />
                             </div>
 
                             <div>
                                 <x-input-label for="quote" :value="__('Quote')" />
-                                <x-textarea-input id="quote" name="quote" type="text" class="mt-1 block w-full" required autofocus autocomplete="quote" />
+                                <x-textarea-input id="quote" name="quote" type="text" class="mt-1 block w-full" required autofocus autocomplete="quote" placeholder="Quote here..." />
                             </div>
 
                             <div>
                                 <x-input-label for="page" :value="__('Page (optional)')" />
-                                <x-text-input id="page" name="page" type="number" class="mt-1 block w-full" required autofocus autocomplete="page" />
+                                <x-text-input id="page" name="page" type="number" class="mt-1 block w-full"  autofocus autocomplete="page" placeholder="0" />
+                            </div>
+
+                            <div>
+                                <x-input-label for="image" :value="__('Book Cover (optional)')" />
+                                <x-text-input id="image" name="image" type="text" class="mt-1 block w-full"  autofocus autocomplete="image" placeholder="www.image.net/image.png" />
                             </div>
 
                             <div>
                                 <x-input-label for="character" :value="__('Character (optional)')" />
-                                <x-text-input id="character" name="character" type="number" class="mt-1 block w-full" required autofocus autocomplete="character" />
+                                <x-text-input id="character" name="character" type="number" class="mt-1 block w-full"  autofocus autocomplete="character" placeholder="i.e., Gandalf, Frodo, Sam..." />
                             </div>
                     
                             <div class="flex items-center gap-4">

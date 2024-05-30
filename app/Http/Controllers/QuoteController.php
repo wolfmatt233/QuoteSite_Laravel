@@ -34,6 +34,22 @@ class QuoteController extends Controller
         $newQuote->page = $request->page;
         $newQuote->character = $request->character;
         $newQuote->user_id = Auth::id();
+        $newQuote->type = "api";
+        $newQuote->save();
+        return redirect('/add');
+    }
+
+    public function saveQuoteManual(Request $request)
+    {
+        $newQuote = new Quote();
+        $newQuote->title = $request->book;
+        $newQuote->author = $request->author;
+        $newQuote->image = $request->image;
+        $newQuote->quote = $request->quote;
+        $newQuote->page = $request->page;
+        $newQuote->character = $request->character;
+        $newQuote->user_id = Auth::id();
+        $newQuote->type = "manual";
         $newQuote->save();
         return redirect('/add');
     }
