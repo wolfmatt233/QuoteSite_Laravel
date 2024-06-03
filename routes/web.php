@@ -16,6 +16,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/save', [QuoteController::class, 'saveQuote'])->name('save');
     Route::post('/saveManual', [QuoteController::class, 'saveQuoteManual'])->name('saveManual');
     Route::delete('/delete/{id}', [QuoteController::class, 'deleteQuote'])->name('delete');
+    Route::post('/edit/{id}', [QuoteController::class, 'editQuote'])->name('edit');
+    Route::put('/updateQuote/{id}', [QuoteController::class, 'updateQuote'])->name('updateQuote');
 });
 
 Route::middleware('auth')->group(function () {

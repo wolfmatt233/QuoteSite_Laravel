@@ -51,7 +51,7 @@
 
                             <div>
                                 <x-input-label for="character" :value="__('Character (optional)')" />
-                                <x-text-input id="character" name="character" type="number" class="mt-1 block w-full"  autofocus autocomplete="character" placeholder="i.e., Gandalf, Frodo, Sam..." />
+                                <x-text-input id="character" name="character" type="text" class="mt-1 block w-full"  autofocus autocomplete="character" placeholder="i.e., Gandalf, Frodo, Sam..." />
                             </div>
                     
                             <div class="flex items-center gap-4">

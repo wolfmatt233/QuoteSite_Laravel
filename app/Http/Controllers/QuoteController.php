@@ -6,6 +6,7 @@ use App\Models\Quote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class QuoteController extends Controller
 {
@@ -52,6 +53,30 @@ class QuoteController extends Controller
         $newQuote->type = "manual";
         $newQuote->save();
         return redirect('/add');
+    }
+
+    public function editQuote($id) {
+        $userId = Auth::id();
+        $quote = Quote::find($id);
+        if($quote->user_id != $userId) {
+            return redirect('/dashboard');
+        } else {
+            return view('edit', ['quote' => $quote]);
+        }
+    }
+
+    public function updateQuote(Request $request, $id) {
+        $quote = Quote::find($id);
+        $quote->title = $request->book;
+        $quote->author = $request->author;
+        if($request->image) {
+            $quote->image = $request->image;
+        }
+        $quote->quote = $request->quote;
+        $quote->page = $request->page;
+        $quote->character = $request->character;
+        $quote->save();
+        return redirect('/dashboard');
     }
 
     public function deleteQuote($id)
