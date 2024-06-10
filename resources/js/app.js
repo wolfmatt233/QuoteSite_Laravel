@@ -10,15 +10,17 @@ window.addEventListener("load", (e) => {
     let bookSearch = document.getElementById("book_search");
     let bookQuery = document.getElementById("book_query");
 
-    bookSearch.onclick = (e) => {
-        if (!bookQuery) {
-            document.getElementById(
-                "bookResults"
-            ).innerHTML = `<option value="" disabled selected>Select your option</option>`;
-        } else {
-            searchBooks();
-        }
-    };
+    if (bookSearch) {
+        bookSearch.onclick = (e) => {
+            if (!bookQuery) {
+                document.getElementById(
+                    "bookResults"
+                ).innerHTML = `<option value="" disabled selected>Select your option</option>`;
+            } else {
+                searchBooks();
+            }
+        };
+    }
 
     async function searchBooks() {
         let query = "https://openlibrary.org/search.json?q=" + bookQuery.value;

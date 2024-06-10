@@ -7,9 +7,15 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">    
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @foreach ($quotes as $quote)
+                    <form method="get" action="{{ route('dashboard') }}" class="flex items-center">
+                        <x-text-input placeholder="Search quotes..." name="search" id="quote_query" type="text"
+                            class="mt-1 block w-full" required autofocus autocomplete="quote" />
+                        <x-secondary-button class="ml-2 mt-1 h-10" type="submit"
+                            id="quote_search">Search</x-secondary-button>
+                    </form>
+                    @forelse ($quotes as $quote)
                         <div class="flex mt-5">
                             @if ($quote->image && $quote->type == 'api')
                                 <img src="https://covers.openlibrary.org/b/id/{{ $quote->image }}-L.jpg" alt="image"
@@ -18,7 +24,7 @@
                                 <img src="{{ $quote->image }}" alt="image" class="h-40 mr-4">
                             @endif
                             <div>
-                                <div class="flex">
+                                <div class="flex flex-wrap">
                                     <p>{{ $quote->title }}</p>
                                     &nbsp;
                                     <p>- {{ $quote->author }}</p>
@@ -49,7 +55,9 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <p>No quotes found.</p>
+                    @endforelse
                 </div>
             </div>
         </div>

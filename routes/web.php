@@ -7,12 +7,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::get('/', [QuoteController::class, 'index'])->name('dashboard');
     Route::get('/dashboard', [QuoteController::class, 'index'])->name('dashboard');
-    Route::get('/add', function () {
-        return view('add');
-    })->name('add');
-    Route::get('/manualAdd', function () {
-        return view('manualAdd');
-    })->name('manualAdd');
+    Route::get('/add', [QuoteController::class, 'add'])->name('add');
+    Route::get('/manualAdd', [QuoteController::class, 'manualAdd'])->name('manualAdd');
+    
     Route::post('/save', [QuoteController::class, 'saveQuote'])->name('save');
     Route::post('/saveManual', [QuoteController::class, 'saveQuoteManual'])->name('saveManual');
     Route::delete('/delete/{id}', [QuoteController::class, 'deleteQuote'])->name('delete');

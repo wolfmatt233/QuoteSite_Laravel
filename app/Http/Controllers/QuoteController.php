@@ -10,10 +10,25 @@ use Illuminate\Support\Facades\Log;
 
 class QuoteController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $id = Auth::id();
-        return view('dashboard', ['quotes' => Quote::where('user_id', $id)->get()]);
+        $search = $request->input('search');
+        $quotes = Quote::where('user_id', $id)->get();
+        
+        if($search) {
+            $quotes = Quote::where('user_id', $id)->where('quote', 'like', "%$search%")->get();
+        }
+
+        return view('dashboard', ['quotes' => $quotes]);
+    }
+
+    public function manualAdd() {
+        return view('manualAdd');
+    }
+
+    public function add() {
+        return view('add');
     }
 
     public function saveQuote(Request $request)
